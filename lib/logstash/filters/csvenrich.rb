@@ -64,14 +64,14 @@ class LogStash::Filters::CSVEnrich < LogStash::Filters::Base
     end
 
     return unless filter?(event)
-    event_lookup_val = event[@lookup_col]
+    event_lookup_val = event.get(@lookup_col)
     if !event_lookup_val.nil?
         looked_up_value = @lookup[event_lookup_val]
 	if !looked_up_value.nil?
 	  @map_field.each do |src_field, dest_field|
 	    val = looked_up_value[src_field]
             if !val.nil?
-              event[dest_field] = val
+              event.set(dest_field, val)
             end
 	  end
 	  filter_matched(event)
