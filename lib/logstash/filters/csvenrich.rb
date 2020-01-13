@@ -24,7 +24,7 @@ class LogStash::Filters::CSVEnrich < LogStash::Filters::Base
   config :key_col, :validate => :string, :default => "id", :required => true
   config :lookup_col, :validate => :string, :default => "id", :required => true
   config :map_field, :validate => :hash, :default => Hash.new, :required => false
-  config :refresh_interval, :validate => :number, :default => 300
+  config :refresh_interval, :validate => :number, :default => 3000
 
   public
   def register
